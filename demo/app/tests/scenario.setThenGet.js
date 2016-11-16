@@ -1,0 +1,18 @@
+/// <reference path="typings/jasmine.d.ts" />
+var secureStorage = new (require("nativescript-secure-storage").SecureStorage)();
+
+describe("set then get", function() {
+  it("sets, then gets the correct value", function(done) {
+    var key = "foo";
+    var value = "bar";
+
+    secureStorage.set({key:key, value:value}).then(function() {
+      expect(true).toBe(true);
+
+      secureStorage.get({key:key}).then(function(returnValue) {
+        expect(returnValue).toEqual(value);
+        done();
+      });
+    });
+  });
+});

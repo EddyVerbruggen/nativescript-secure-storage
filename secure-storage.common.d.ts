@@ -1,7 +1,18 @@
-export declare class Common {
-    message: string;
-    constructor();
+export interface SetOptions {
+    service?: string;
+    key: string;
+    value: any;
 }
-export declare class Utils {
-    static SUCCESS_MSG(): string;
+export interface GetOptions {
+    service?: string;
+    key: string;
+}
+export interface RemoveOptions {
+    service?: string;
+    key: string;
+}
+export interface SecureStorageApi {
+    get(arg: GetOptions): Promise<any>;
+    set(arg: SetOptions): Promise<boolean>;
+    remove(arg: RemoveOptions): Promise<boolean>;
 }

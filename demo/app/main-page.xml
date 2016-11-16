@@ -1,5 +1,17 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout>
-    <Label text="{{ message }}" class="message" textWrap="true"/>
-  </StackLayout>
+  <ScrollView>
+    <StackLayout>
+
+      <Image margin="0" src="~/res/securestorage.png" width="100%" />
+
+      <Button text="Set a value" tap="{{ doSet }}" cssClass="button button-a" />
+
+      <Button text="Get a value" tap="{{ doGet }}" cssClass="button button-b" />
+
+      <Button text="Remove a value" tap="{{ doRemove }}" cssClass="button button-c" />
+
+      <Label text="{{ lastRetrievedValue }}" cssClass="message" />
+
+    </StackLayout>
+  </ScrollView>
 </Page>
