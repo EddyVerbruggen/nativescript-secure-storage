@@ -1,0 +1,11 @@
+*.js
+*.js.map
+*.log
+!scripts/*.js
+demo/app/*.js
+!demo/app/tests/*.js
+demo/*.d.ts
+demo/lib
+demo/platforms
+demo/node_modules
+node_modules
