@@ -15,7 +15,7 @@ Want to dive in quickly? Check out [the demo](demo)! Otherwise, continue reading
 
 You can run the demo app from the root of the project by typing `npm run demo.ios.device`.
 
-<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-secure-storage/master/screenshots/ios-demo.png" width="375px" height="500px"/>
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-secure-storage/master/screenshots/ios-demo.png?v=2" width="375px" height="500px"/>
 
 ## API
 
