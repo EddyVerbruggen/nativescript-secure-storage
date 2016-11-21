@@ -29,12 +29,15 @@
   "keywords": [
     "NativeScript",
     "JavaScript",
-    "Android",
-    "iOS"
+    "iOS",
+    "KeyChain",
+    "KeyStore",
+    "Secure Storage",
+    "Storage"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "youremail@yourdomain.com"
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/EddyVerbruggen/nativescript-secure-storage/issues"

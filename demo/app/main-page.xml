@@ -10,7 +10,7 @@
 
       <Button text="Remove a value" tap="{{ doRemove }}" cssClass="button button-c" />
 
-      <Label text="{{ lastRetrievedValue }}" cssClass="message" />
+      <Label text="{{ lastRetrievedValue }}" cssClass="message" textWrap="true" />
 
     </StackLayout>
   </ScrollView>
