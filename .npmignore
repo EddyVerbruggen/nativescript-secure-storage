@@ -1,5 +1,6 @@
 demo/
 screenshots/
+platforms/ios/*.txt
 *.gif
 *.png
 *.log
