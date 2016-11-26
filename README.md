@@ -119,4 +119,4 @@ secureStorage.remove({
 ```
 
 ## Future work
-* Android implementation - but it's not as trivial as iOS.
+Android implementation - but it's not as trivial as iOS.
