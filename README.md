@@ -1,7 +1,7 @@
 # NativeScript Secure Storage plugin
 
-* On __iOS__ we're leveraging the KeyChain,
-* On __Android__ we're likely going to use KeyStore (work in progress).
+* On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library,
+* On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal]()https://github.com/facebook/conceal.
 
 ## Installation
 From the command prompt go to your app's root folder and execute:
@@ -37,11 +37,8 @@ secureStorage.set({
   key: "foo",
   value: "I was set at " + new Date()
 }).then(
-  function() {
-    console.log("Successfully set a value");
-  },
-  function(err) {
-    console.log("Error setting a value: " + err);
+  function(success) {
+    console.log("Successfully set a value? " + success);
   }
 );
 ```
@@ -57,14 +54,13 @@ let secureStorage = new SecureStorage();
 secureStorage.set({
   key: "foo",
   value: "I was set at " + new Date()
-}).then(() => {
-  console.log("Successfully set a value");
-}, (err) => {
-  console.log("Error setting a value: " + err);
+}).then((success) => {
+  console.log("Successfully set a value? " + success);
 });
 ```
 
 ### `get`
+Will return `null` if not found.
 
 ##### JavaScript
 ```js
@@ -73,9 +69,6 @@ secureStorage.get({
 }).then(
   function(value) {
     console.log("Got value: " + value);
-  },
-  function(err) {
-    console.log("Error getting a value: " + err);
   }
 );
 ```
@@ -86,8 +79,6 @@ secureStorage.get({
   key: "foo"
 }).then((value) => {
   console.log("Got value: " + value);
-}, (err) => {
-  console.log("Error getting a value: " + err);
 });
 ```
 
@@ -98,11 +89,8 @@ secureStorage.get({
 secureStorage.remove({
   key: "foo"
 }).then(
-  function(value) {
-    console.log("Removed value: " + value);
-  },
-  function(err) {
-    console.log("Error removing a value: " + err);
+  function(success) {
+    console.log("Removed value? " + success);
   }
 );
 ```
@@ -111,12 +99,7 @@ secureStorage.remove({
 ```js
 secureStorage.remove({
   key: "foo"
-}).then((value) => {
-  console.log("Removed value: " + value);
-}, (err) => {
-  console.log("Error removing a value: " + err);
-});
+}).then((success) => {
+  console.log("Successfully removed a value? " + success);
+);
 ```
-
-## Future work
-* Android implementation - but it's not as trivial as iOS.

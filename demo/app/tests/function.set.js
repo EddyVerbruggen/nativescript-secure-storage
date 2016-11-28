@@ -14,8 +14,8 @@ describe("set", function() {
     var key = "foo1";
     var value = "bar1";
 
-    secureStorage.set({key:key, value:value}).then(function() {
-      expect(true).toBe(true);
+    secureStorage.set({key:key, value:value}).then(function(result) {
+      expect(result).toBe(true);
       done();
     });
   });

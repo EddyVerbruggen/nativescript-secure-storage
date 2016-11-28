@@ -16,10 +16,11 @@ export class SecureStorage implements SecureStorageApi {
       query.service = arg.service || that.defaultService;
       query.account = arg.key;
 
-      if (query.fetch()) {
+      try {
+        query.fetch();
         resolve(query.password);
-      } else {
-        reject("Error retrieving value for key " + arg.key);
+      } catch (e) {
+        resolve(null);
       }
     });
   };
@@ -37,11 +38,7 @@ export class SecureStorage implements SecureStorageApi {
       query.account = arg.key;
       query.password = arg.value;
 
-      if (query.save()) {
-        resolve();
-      } else {
-        reject("Error saving value for key " + arg.key);
-      }
+      resolve(query.save());
     });
   };
 
@@ -52,11 +49,7 @@ export class SecureStorage implements SecureStorageApi {
       query.service = arg.service || that.defaultService;
       query.account = arg.key;
 
-      if (query.deleteItem()) {
-        resolve();
-      } else {
-        reject("Error removing value for key " + arg.key);
-      }
+      resolve(query.deleteItem());
     });
   };
 }

@@ -1,0 +1,15 @@
+android {
+    productFlavors {
+        "secsto" {
+            dimension "secsto"
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.orhanobut:hawk:2.0.1'
+}

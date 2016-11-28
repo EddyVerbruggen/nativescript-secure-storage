@@ -16,9 +16,9 @@ export class HelloWorldModel extends Observable {
       key: "foo"
     }).then((value) => {
       console.log("Value: " + value);
-      that.set("lastRetrievedValue", value);
+      that.set("lastRetrievedValue", value === null ? "(no value set)" : value);
     }, (err) => {
-      alert(err);
+      console.log(err);
     });
   }
 
@@ -27,10 +27,10 @@ export class HelloWorldModel extends Observable {
     this.secureStorage.set({
       key: "foo",
       value: "I was set at " + new Date()
-    }).then(() => {
-      console.log("Successfully set a value");
+    }).then((success) => {
+      console.log("Successfully set a value? " + success);
     }, (err) => {
-      alert(err);
+      console.log(err);
     });
   }
 
@@ -38,11 +38,11 @@ export class HelloWorldModel extends Observable {
     let that = this;
     this.secureStorage.remove({
       key: "foo"
-    }).then(() => {
-      console.log("Successfully removed a value");
+    }).then((success) => {
+      console.log("Successfully removed a value? " + success);
       that.set("lastRetrievedValue", "");
     }, (err) => {
-      alert(err);
+      console.log(err);
     });
   }
 }

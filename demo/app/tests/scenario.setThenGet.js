@@ -6,8 +6,8 @@ describe("set then get", function() {
     var key = "foo";
     var value = "bar";
 
-    secureStorage.set({key:key, value:value}).then(function() {
-      expect(true).toBe(true);
+    secureStorage.set({key:key, value:value}).then(function(result) {
+      expect(result).toBe(true);
 
       secureStorage.get({key:key}).then(function(returnValue) {
         expect(returnValue).toEqual(value);

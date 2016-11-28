@@ -1,7 +1,7 @@
 {
   "name": "nativescript-secure-storage",
-  "version": "1.0.0",
-  "description": "Secure Storage NativeScript plugin. Leveraging KeyChain on iOS and awaiting an implementation on Android.",
+  "version": "2.0.0",
+  "description": "Secure Storage NativeScript plugin",
   "main": "secure-storage.js",
   "typings": "index.d.ts",
   "nativescript": {
@@ -33,7 +33,9 @@
     "KeyChain",
     "KeyStore",
     "Secure Storage",
-    "Storage"
+    "Storage",
+    "SharedPreferences",
+    "Facebook conceal"
   ],
   "author": {
     "name": "Eddy Verbruggen",
