@@ -1,3 +1,5 @@
+.vscode
+.idea
 demo/
 screenshots/
 platforms/ios/*.txt
