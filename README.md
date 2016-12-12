@@ -54,9 +54,7 @@ let secureStorage = new SecureStorage();
 secureStorage.set({
   key: "foo",
   value: "I was set at " + new Date()
-}).then((success) => {
-  console.log("Successfully set a value? " + success);
-});
+}).then(success => console.log("Successfully set a value? " + success));
 ```
 
 ### `get`
@@ -77,9 +75,7 @@ secureStorage.get({
 ```js
 secureStorage.get({
   key: "foo"
-}).then((value) => {
-  console.log("Got value: " + value);
-});
+}).then(value => console.log("Got value: " + value));
 ```
 
 ### `remove`
@@ -99,7 +95,31 @@ secureStorage.remove({
 ```js
 secureStorage.remove({
   key: "foo"
-}).then((success) => {
-  console.log("Successfully removed a value? " + success);
-);
+}).then(success => console.log("Successfully removed a value? " + success));
+```
+
+## Usage with Angular
+
+In your view:
+
+```html
+  <Button text="set secure value" (tap)="setSecureValue()"></Button>
+```
+
+In your `@Component`:
+
+```js
+import { SecureStorage } from "nativescript-secure-storage";
+
+export class MyComponent {
+  secureStorage = new SecureStorage();
+  
+  // a method that can be called from your view
+  setSecureValue() {
+    this.secureStorage.set({
+      key: 'myKey',
+      value: 'my value'
+    }).then(success => { console.log(success)});
+  }
+}
 ```

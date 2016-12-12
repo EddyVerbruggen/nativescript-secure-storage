@@ -49,7 +49,11 @@ export class SecureStorage implements SecureStorageApi {
       query.service = arg.service || that.defaultService;
       query.account = arg.key;
 
-      resolve(query.deleteItem());
+      try {
+        resolve(query.deleteItem());
+      } catch (e) {
+        resolve(false);
+      }
     });
   };
 }
