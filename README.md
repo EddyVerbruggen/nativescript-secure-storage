@@ -103,7 +103,7 @@ secureStorage.remove({
 In your view:
 
 ```html
-  <Button text="set secure value" (tap)="setSecureValue()"></Button>
+<Button text="set secure value" (tap)="setSecureValue()"></Button>
 ```
 
 In your `@Component`:
