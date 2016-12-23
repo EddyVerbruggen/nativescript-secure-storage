@@ -1,7 +1,7 @@
 export interface SetOptions {
     service?: string;
     key: string;
-    value: any;
+    value: string;
 }
 export interface GetOptions {
     service?: string;
