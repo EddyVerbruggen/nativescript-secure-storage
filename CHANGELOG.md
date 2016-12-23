@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.1.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.1.0) (2016-12-23)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.0.2...2.1.0)
+
+**Closed issues:**
+
+- Limit storage to Strings [\#5](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/5)
+
 ## [2.0.2](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.0.2) (2016-12-14)
 [Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.0.0...2.0.2)
 
