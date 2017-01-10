@@ -19,8 +19,7 @@
     "test.ios.device": "cd demo && tns test ios",
     "test.android": "cd demo && tns test android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-secure-storage && tns plugin add .. && tns install",
-    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
-    "postclone": "npm i && node scripts/postclone.js"
+    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd .."
   },
   "repository": {
     "type": "git",
