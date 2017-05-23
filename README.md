@@ -44,9 +44,9 @@ secureStorage.set({
 ```
 
 ##### TypeScript
-```js
+```typescript
 // require the plugin
-import {SecureStorage} from "nativescript-secure-storage";
+import { SecureStorage } from "nativescript-secure-storage";
 
 // instantiate the plugin
 let secureStorage = new SecureStorage();
@@ -72,7 +72,7 @@ secureStorage.get({
 ```
 
 ##### TypeScript
-```js
+```typescript
 secureStorage.get({
   key: "foo"
 }).then(value => console.log("Got value: " + value));
