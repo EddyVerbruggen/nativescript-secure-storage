@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.1.1](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.1.0) (2017-07-01)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.0...2.1.1)
+
+**Implemented enhancements:**
+
+- Not working in iOS simulator. Gives "found no keychain client entitlements" [\#10](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/10)
+
 ## [2.1.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.1.0) (2016-12-23)
 [Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.0.2...2.1.0)
 
