@@ -8,4 +8,6 @@ platforms/ios/*.txt
 *.log
 *.map
 *.ts
+*.json
 !*.d.ts
+references.d.ts

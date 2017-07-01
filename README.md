@@ -1,6 +1,6 @@
 # NativeScript Secure Storage plugin
 
-* On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library,
+* On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
 * On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
 
 ## Installation
@@ -92,7 +92,7 @@ secureStorage.remove({
 ```
 
 ##### TypeScript
-```js
+```typescript
 secureStorage.remove({
   key: "foo"
 }).then(success => console.log("Successfully removed a value? " + success));
@@ -108,7 +108,7 @@ In your view:
 
 In your `@Component`:
 
-```js
+```typescript
 import { SecureStorage } from "nativescript-secure-storage";
 
 export class MyComponent {

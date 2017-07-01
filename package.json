@@ -1,6 +1,6 @@
 {
   "name": "nativescript-secure-storage",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Secure Storage NativeScript plugin",
   "main": "secure-storage",
   "typings": "index.d.ts",
@@ -12,14 +12,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
-    "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
+    "demo.ios": "npm run preparedemo && cd demo && tns run ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
-    "test.ios": "cd demo && tns test ios --emulator",
-    "test.ios.device": "cd demo && tns test ios",
-    "test.android": "cd demo && tns test android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-secure-storage && tns plugin add .. && tns install",
-    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd .."
+    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "test": "npm run tslint && npm run tslint.demo",
+    "tslint": "tslint *.ts",
+    "tslint.demo": "tslint demo/app/*.ts"
   },
   "repository": {
     "type": "git",
@@ -47,10 +46,11 @@
   "homepage": "https://github.com/EddyVerbruggen/nativescript-secure-storage",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "tns-core-modules": "^2.3.0",
-    "tns-platform-declarations": "^2.3.0",
-    "typescript": "^2.0.7",
+    "tns-core-modules": "^3.0.0",
+    "tns-platform-declarations": "^3.0.0",
+    "typescript": "~2.3.0",
     "prompt": "^1.0.0",
-    "rimraf": "^2.5.0"
+    "rimraf": "^2.5.0",
+    "tslint": "^5.0.0"
   }
 }

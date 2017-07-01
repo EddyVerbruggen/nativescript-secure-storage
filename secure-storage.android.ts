@@ -16,17 +16,17 @@ export class SecureStorage implements SecureStorageApi {
     return new Promise((resolve, reject) => {
       resolve(com.orhanobut.hawk.Hawk.get(arg.key));
     });
-  };
+  }
 
   public set(arg: SetOptions): Promise<boolean> {
     return new Promise((resolve, reject) => {
       resolve(com.orhanobut.hawk.Hawk.put(arg.key, arg.value));
     });
-  };
+  }
 
   public remove(arg: RemoveOptions): Promise<boolean> {
     return new Promise((resolve, reject) => {
       resolve(com.orhanobut.hawk.Hawk.delete(arg.key));
     });
-  };
+  }
 }

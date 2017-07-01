@@ -1,17 +1,13 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
   <ScrollView>
     <StackLayout>
-
       <Image margin="0" src="~/res/securestorage.png" width="100%" />
 
-      <Button text="Set a value" tap="{{ doSet }}" cssClass="button button-a" />
+      <Button text="Set a value" tap="{{ doSet }}" class="button-a" />
+      <Button text="Get a value" tap="{{ doGet }}" class="button-b" />
+      <Button text="Remove a value" tap="{{ doRemove }}" class="button-c" />
 
-      <Button text="Get a value" tap="{{ doGet }}" cssClass="button button-b" />
-
-      <Button text="Remove a value" tap="{{ doRemove }}" cssClass="button button-c" />
-
-      <Label text="{{ lastRetrievedValue }}" cssClass="message" textWrap="true" />
-
+      <Label text="{{ lastRetrievedValue }}" class="message" textWrap="true" />
     </StackLayout>
   </ScrollView>
 </Page>

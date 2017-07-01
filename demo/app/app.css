@@ -5,15 +5,12 @@
 }
 
 button {
+  color: #ffffff;
   background-color: #6494AA;
   padding: 10;
   margin: 12 20;
   font-size: 16;
   border-radius: 6;
-}
-
-.button {
-  color: #ffffff;
 }
 
 .button-a {
