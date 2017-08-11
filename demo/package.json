@@ -9,9 +9,10 @@
     }
   },
   "dependencies": {
-    "nativescript-secure-storage": "file:..",
+    "nativescript-secure-storage": "file:///Users/eddyverbruggen/sandboxes/nativescript-secure-storage",
     "nativescript-unit-test-runner": "^0.3.0",
-    "tns-core-modules": "^3.1.0"
+    "tns-core-modules": "^3.1.0",
+    "tns-ios": "3.1.0"
   },
   "devDependencies": {
     "babel-traverse": "6.12.0",

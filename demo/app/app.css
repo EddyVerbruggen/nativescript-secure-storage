@@ -7,14 +7,17 @@
 button {
   color: #ffffff;
   background-color: #6494AA;
-  padding: 10;
-  margin: 12 20;
-  font-size: 16;
-  border-radius: 6;
+  padding: 6;
+  margin: 6 24;
+  font-size: 14;
+  border-radius: 4;
+}
+
+.button-group-first {
+  margin-top: 24;
 }
 
 .button-a {
-  margin-top: 22;
   background-color: #E0A458;
 }
 

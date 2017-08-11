@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.2.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.2.0) (2017-08-11)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.1...2.2.0)
+
+**Implemented enhancements:**
+
+- return without promise [\#9](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/9)
+
 ## [2.1.1](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.1.0) (2017-07-01)
 [Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.0...2.1.1)
 

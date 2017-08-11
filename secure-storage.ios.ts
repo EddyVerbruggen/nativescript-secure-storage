@@ -1,5 +1,5 @@
 import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions } from "./secure-storage.common";
-import { ios as iosUtils } from "utils/utils";
+import { ios as iosUtils } from "tns-core-modules/utils/utils";
 
 declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly: any;
 
@@ -25,16 +25,14 @@ export class SecureStorage implements SecureStorageApi {
   }
 
   public get(arg: GetOptions): Promise<any> {
-    let that = this;
     return new Promise((resolve, reject) => {
-
       if (this.isSimulator) {
         resolve(NSUserDefaults.standardUserDefaults.objectForKey(arg.key));
         return;
       }
 
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || that.defaultService;
+      query.service = arg.service || this.defaultService;
       query.account = arg.key;
 
       try {
@@ -46,33 +44,55 @@ export class SecureStorage implements SecureStorageApi {
     });
   }
 
-  public set(arg: SetOptions): Promise<boolean> {
-    let that = this;
-    return new Promise((resolve, reject) => {
+  getSync(arg: GetOptions): any {
+    if (this.isSimulator) {
+      return NSUserDefaults.standardUserDefaults.objectForKey(arg.key);
+    }
 
+    let query = SAMKeychainQuery.new();
+    query.service = arg.service || this.defaultService;
+    query.account = arg.key;
+    try {
+      query.fetch();
+      return query.password;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  public set(arg: SetOptions): Promise<boolean> {
+    return new Promise((resolve, reject) => {
       if (this.isSimulator) {
         NSUserDefaults.standardUserDefaults.setObjectForKey(arg.value, arg.key);
         resolve(true);
         return;
       }
 
-      // TODO optionally pass in accessibility
-      let accessibility = kSecAttrAccessibleAlwaysThisDeviceOnly;
-      SAMKeychain.setAccessibilityType(accessibility);
-
+      SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || that.defaultService;
+      query.service = arg.service || this.defaultService;
       query.account = arg.key;
       query.password = arg.value;
-
       resolve(query.save());
     });
   }
 
-  public remove(arg: RemoveOptions): Promise<boolean> {
-    let that = this;
-    return new Promise((resolve, reject) => {
+  setSync(arg: SetOptions): boolean {
+    if (this.isSimulator) {
+      NSUserDefaults.standardUserDefaults.setObjectForKey(arg.value, arg.key);
+      return true;
+    }
 
+    SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
+    let query = SAMKeychainQuery.new();
+    query.service = arg.service || this.defaultService;
+    query.account = arg.key;
+    query.password = arg.value;
+    return query.save();
+  }
+
+  public remove(arg: RemoveOptions): Promise<boolean> {
+    return new Promise((resolve, reject) => {
       if (this.isSimulator) {
         NSUserDefaults.standardUserDefaults.removeObjectForKey(arg.key);
         resolve(true);
@@ -80,14 +100,29 @@ export class SecureStorage implements SecureStorageApi {
       }
 
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || that.defaultService;
+      query.service = arg.service || this.defaultService;
       query.account = arg.key;
-
       try {
         resolve(query.deleteItem());
       } catch (e) {
         resolve(false);
       }
     });
+  }
+
+  removeSync(arg: RemoveOptions): boolean {
+    if (this.isSimulator) {
+      NSUserDefaults.standardUserDefaults.removeObjectForKey(arg.key);
+      return true;
+    }
+
+    let query = SAMKeychainQuery.new();
+    query.service = arg.service || this.defaultService;
+    query.account = arg.key;
+    try {
+      return query.deleteItem();
+    } catch (e) {
+      return false;
+    }
   }
 }

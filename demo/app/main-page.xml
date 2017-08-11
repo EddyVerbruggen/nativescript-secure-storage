@@ -3,9 +3,14 @@
     <StackLayout>
       <Image margin="0" src="~/res/securestorage.png" width="100%" />
 
-      <Button text="Set a value" tap="{{ doSet }}" class="button-a" />
-      <Button text="Get a value" tap="{{ doGet }}" class="button-b" />
-      <Button text="Remove a value" tap="{{ doRemove }}" class="button-c" />
+      <Button text="Set a value, sync" tap="{{ doSetSync }}" class="button-a button-group-first" />
+      <Button text="Set a value, async" tap="{{ doSet }}" class="button-a" />
+
+      <Button text="Get a value, sync" tap="{{ doGetSync }}" class="button-b button-group-first" />
+      <Button text="Get a value, async" tap="{{ doGet }}" class="button-b" />
+
+      <Button text="Remove a value, sync" tap="{{ doRemoveSync }}" class="button-c button-group-first" />
+      <Button text="Remove a value, async" tap="{{ doRemove }}" class="button-c" />
 
       <Label text="{{ lastRetrievedValue }}" class="message" textWrap="true" />
     </StackLayout>

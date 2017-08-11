@@ -1,8 +1,7 @@
-import {Observable} from "data/observable";
-import {SecureStorage, GetOptions, SetOptions} from "nativescript-secure-storage";
+import { Observable } from "tns-core-modules/data/observable";
+import { SecureStorage } from "nativescript-secure-storage";
 
 export class HelloWorldModel extends Observable {
-  public message: string;
   private secureStorage: SecureStorage;
 
   constructor() {
@@ -11,38 +10,57 @@ export class HelloWorldModel extends Observable {
   }
 
   public doGet() {
-    let that = this;
     this.secureStorage.get({
       key: "foo"
-    }).then((value) => {
+    }).then(value => {
       console.log("Value: " + value);
-      that.set("lastRetrievedValue", value === null ? "(no value set)" : value);
+      this.set("lastRetrievedValue", value === null ? "(no value set)" : value);
     }, (err) => {
       console.log(err);
     });
   }
 
+  public doGetSync() {
+    const value = this.secureStorage.getSync({
+      key: "foo"
+    });
+    this.set("lastRetrievedValue", value === null ? "(no value set)" : value);
+  }
+
   public doSet() {
-    let that = this;
     this.secureStorage.set({
       key: "foo",
       value: "I was set at " + new Date()
-    }).then((success) => {
+    }).then(success => {
       console.log("Successfully set a value? " + success);
     }, (err) => {
       console.log(err);
     });
   }
 
+  public doSetSync() {
+    const success = this.secureStorage.setSync({
+      key: "foo",
+      value: "I was set at " + new Date()
+    });
+    console.log("Successfully set a value? " + success);
+  }
+
   public doRemove() {
-    let that = this;
     this.secureStorage.remove({
       key: "foo"
-    }).then((success) => {
+    }).then(success => {
       console.log("Successfully removed a value? " + success);
-      that.set("lastRetrievedValue", "");
+      this.set("lastRetrievedValue", "");
     }, (err) => {
       console.log(err);
     });
+  }
+
+  public doRemoveSync() {
+    this.secureStorage.removeSync({
+      key: "foo"
+    });
+    this.set("lastRetrievedValue", "");
   }
 }

@@ -1,7 +1,14 @@
 # NativeScript Secure Storage plugin
 
-* On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
-* On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]
+[![Twitter Follow][twitter-image]][twitter-url]
+
+[npm-image]:http://img.shields.io/npm/v/nativescript-secure-storage.svg
+[npm-url]:https://npmjs.org/package/nativescript-secure-storage
+[downloads-image]:http://img.shields.io/npm/dm/nativescript-secure-storage.svg
+[twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
+[twitter-url]:https://twitter.com/eddyverbruggen
 
 ## Installation
 From the command prompt go to your app's root folder and execute:
@@ -19,7 +26,7 @@ You can run the demo app from the root of the project by typing `npm run demo.io
 
 ## API
 
-### `set`
+### `set` | `setSync`
 > "In order to GET something you first need to SET it."
 >
 > -- _Eddy Verbruggen_
@@ -33,6 +40,7 @@ var SecureStorage = require("nativescript-secure-storage").SecureStorage;
 // instantiate the plugin
 var secureStorage = new SecureStorage();
 
+// async
 secureStorage.set({
   key: "foo",
   value: "I was set at " + new Date()
@@ -41,6 +49,12 @@ secureStorage.set({
     console.log("Successfully set a value? " + success);
   }
 );
+
+// sync
+var success = secureStorage.setSync({
+  key: "foo",
+  value: "I was set at " + new Date()
+});
 ```
 
 ##### TypeScript
@@ -51,17 +65,25 @@ import { SecureStorage } from "nativescript-secure-storage";
 // instantiate the plugin
 let secureStorage = new SecureStorage();
 
+// async
 secureStorage.set({
   key: "foo",
   value: "I was set at " + new Date()
 }).then(success => console.log("Successfully set a value? " + success));
+
+// sync
+const success = secureStorage.setSync({
+  key: "foo",
+  value: "I was set at " + new Date()
+});
 ```
 
-### `get`
+### `get` | `getSync`
 Will return `null` if not found.
 
 ##### JavaScript
 ```js
+// async
 secureStorage.get({
   key: "foo"
 }).then(
@@ -69,19 +91,31 @@ secureStorage.get({
     console.log("Got value: " + value);
   }
 );
+
+// sync
+var value = secureStorage.getSync({
+  key: "foo"
+});
 ```
 
 ##### TypeScript
 ```typescript
+// async
 secureStorage.get({
   key: "foo"
 }).then(value => console.log("Got value: " + value));
+
+// sync
+const value = secureStorage.getSync({
+  key: "foo"
+});
 ```
 
-### `remove`
+### `remove` | `removeSync`
 
 ##### JavaScript
 ```js
+// async
 secureStorage.remove({
   key: "foo"
 }).then(
@@ -89,13 +123,24 @@ secureStorage.remove({
     console.log("Removed value? " + success);
   }
 );
+
+// sync
+var success = secureStorage.removeSync({
+  key: "foo"
+});
 ```
 
 ##### TypeScript
 ```typescript
+// async
 secureStorage.remove({
   key: "foo"
 }).then(success => console.log("Successfully removed a value? " + success));
+
+// sync
+const success = secureStorage.removeSync({
+  key: "foo"
+});
 ```
 
 ## Usage with Angular
@@ -123,3 +168,7 @@ export class MyComponent {
   }
 }
 ```
+
+## Credits
+* On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
+* On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
