@@ -24,13 +24,14 @@ You can run the demo app from the root of the project by typing `npm run demo.io
 
 <img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-secure-storage/master/screenshots/ios-demo.png?v=2" width="375px" height="500px"/>
 
+__PRO TIP:__ Want to store objects instead of strings? Use `JSON.stringify` with `set` and `JSON.parse` with `get`.
+
 ## API
 
 ### `set` | `setSync`
 > "In order to GET something you first need to SET it."
 >
 > -- _Eddy Verbruggen_
-
 
 ##### JavaScript
 ```js
