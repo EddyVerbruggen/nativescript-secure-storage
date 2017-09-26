@@ -139,10 +139,12 @@ export class SecureStorage implements SecureStorageApi {
       try {
         let allAccounts = SAMKeychain.allAccounts();
         for ( let i = 0; i < allAccounts.count; i++) {
+          // Below code uses hard-coded 'acct', because NativeScript doesn't
+          // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
           let key = allAccounts[i].objectForKey('acct');
           let query = SAMKeychainQuery.new();
           query.service = arg.service || this.defaultService;
-                    query.account = key;
+          query.account = key;
           query.deleteItem();
         }
         resolve(true);
@@ -163,7 +165,8 @@ export class SecureStorage implements SecureStorageApi {
     try {
       let allAccounts = SAMKeychain.allAccounts();
       for ( let i = 0; i < allAccounts.count; i++) {
-        console.log('Deleteing ' + allAccounts[i]);
+        // Below code uses hard-coded 'acct', because NativeScript doesn't
+        // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
         let key = allAccounts[i].objectForKey('acct');
         let query = SAMKeychainQuery.new();
         query.service = arg.service || this.defaultService;
