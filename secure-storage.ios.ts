@@ -1,7 +1,7 @@
-import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions } from "./secure-storage.common";
+import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions } from "./secure-storage.common";
 import { ios as iosUtils } from "tns-core-modules/utils/utils";
 
-declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle: any;
+declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle, NSProcessInfo, UIDevice: any;
 
 export class SecureStorage implements SecureStorageApi {
 
