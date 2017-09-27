@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.demo",
+    "id": "org.nativescript.plugindemo.securestorage",
     "tns-ios": {
       "version": "3.1.0"
     },

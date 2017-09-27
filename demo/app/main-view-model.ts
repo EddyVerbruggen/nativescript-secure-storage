@@ -63,4 +63,18 @@ export class HelloWorldModel extends Observable {
     });
     this.set("lastRetrievedValue", "");
   }
+
+  public doRemoveAll() {
+    this.secureStorage.removeAll().then(success => {
+      console.log("Successfully removed all values? " + success);
+      this.set("lastRetrievedValue", "");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public doRemoveAllSync() {
+    this.secureStorage.removeAllSync();
+    this.set("lastRetrievedValue", "");
+  }
 }

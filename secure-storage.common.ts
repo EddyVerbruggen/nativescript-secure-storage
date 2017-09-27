@@ -28,6 +28,6 @@ export interface SecureStorageApi {
   remove(arg: RemoveOptions): Promise<boolean>;
   removeSync(arg: RemoveOptions): boolean;
 
-  removeAll(arg: RemoveAllOptions): Promise<boolean>;
-  removeAllSync(arg: RemoveAllOptions): boolean;
+  removeAll(arg?: RemoveAllOptions): Promise<boolean>;
+  removeAllSync(arg?: RemoveAllOptions): boolean;
 }

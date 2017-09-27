@@ -8,7 +8,7 @@ button {
   color: #ffffff;
   background-color: #6494AA;
   padding: 6;
-  margin: 6 24;
+  margin: 8 24;
   font-size: 14;
   border-radius: 4;
 }
@@ -18,9 +18,17 @@ button {
 }
 
 .button-a {
-  background-color: #E0A458;
+  background-color: cornflowerblue;
 }
 
 .button-b {
-  background-color: #90A959;
+  background-color: forestgreen;
+}
+
+.button-c {
+  background-color: orange;
+}
+
+.button-d {
+  background-color: red;
 }

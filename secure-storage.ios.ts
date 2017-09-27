@@ -1,12 +1,16 @@
 import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions } from "./secure-storage.common";
 import { ios as iosUtils } from "tns-core-modules/utils/utils";
 
-declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle, NSProcessInfo, UIDevice: any;
+declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle,
+    NSProcessInfo, UIDevice: any;
 
 export class SecureStorage implements SecureStorageApi {
-
-  private defaultService: string = "my_app";
   private isSimulator: boolean;
+
+  private static defaultService: string = "my_app";
+
+  // This is a copy of 'kSSKeychainAccountKey_copy' which is not exposed from SSKeychain.h by {N}
+  private static kSSKeychainAccountKey_copy: string = "acct";
 
   constructor() {
     const processInfo = iosUtils.getter(NSProcessInfo, NSProcessInfo.processInfo);
@@ -32,7 +36,7 @@ export class SecureStorage implements SecureStorageApi {
       }
 
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || this.defaultService;
+      query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
 
       try {
@@ -50,7 +54,7 @@ export class SecureStorage implements SecureStorageApi {
     }
 
     let query = SAMKeychainQuery.new();
-    query.service = arg.service || this.defaultService;
+    query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
     try {
       query.fetch();
@@ -70,7 +74,7 @@ export class SecureStorage implements SecureStorageApi {
 
       SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || this.defaultService;
+      query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
       query.password = arg.value;
       resolve(query.save());
@@ -85,7 +89,7 @@ export class SecureStorage implements SecureStorageApi {
 
     SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
     let query = SAMKeychainQuery.new();
-    query.service = arg.service || this.defaultService;
+    query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
     query.password = arg.value;
     return query.save();
@@ -100,7 +104,7 @@ export class SecureStorage implements SecureStorageApi {
       }
 
       let query = SAMKeychainQuery.new();
-      query.service = arg.service || this.defaultService;
+      query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
       try {
         resolve(query.deleteItem());
@@ -117,7 +121,7 @@ export class SecureStorage implements SecureStorageApi {
     }
 
     let query = SAMKeychainQuery.new();
-    query.service = arg.service || this.defaultService;
+    query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
     try {
       return query.deleteItem();
@@ -126,7 +130,7 @@ export class SecureStorage implements SecureStorageApi {
     }
   }
 
-  public removeAll(arg: RemoveAllOptions): Promise<boolean> {
+  public removeAll(arg?: RemoveAllOptions): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.isSimulator) {
         let defaults = NSUserDefaults.standardUserDefaults;
@@ -138,12 +142,10 @@ export class SecureStorage implements SecureStorageApi {
 
       try {
         let allAccounts = SAMKeychain.allAccounts();
-        for ( let i = 0; i < allAccounts.count; i++) {
-          // Below code uses hard-coded 'acct', because NativeScript doesn't
-          // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
-          let key = allAccounts[i].objectForKey('acct');
+        for (let i = 0; i < allAccounts.count; i++) {
+          let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
           let query = SAMKeychainQuery.new();
-          query.service = arg.service || this.defaultService;
+          query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
           query.account = key;
           query.deleteItem();
         }
@@ -154,7 +156,7 @@ export class SecureStorage implements SecureStorageApi {
     });
   }
 
-  public removeAllSync(arg: RemoveAllOptions): boolean {
+  public removeAllSync(arg?: RemoveAllOptions): boolean {
     if (this.isSimulator) {
       let defaults = NSUserDefaults.standardUserDefaults;
       let bundleId = NSBundle.mainBundle.bundleIdentifier;
@@ -164,12 +166,10 @@ export class SecureStorage implements SecureStorageApi {
 
     try {
       let allAccounts = SAMKeychain.allAccounts();
-      for ( let i = 0; i < allAccounts.count; i++) {
-        // Below code uses hard-coded 'acct', because NativeScript doesn't
-        // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
-        let key = allAccounts[i].objectForKey('acct');
+      for (let i = 0; i < allAccounts.count; i++) {
+        let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
         let query = SAMKeychainQuery.new();
-        query.service = arg.service || this.defaultService;
+        query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
         query.account = key;
         query.deleteItem();
       }

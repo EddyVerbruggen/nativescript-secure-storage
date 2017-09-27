@@ -41,13 +41,13 @@ export class SecureStorage implements SecureStorageApi {
     return com.orhanobut.hawk.Hawk.delete(arg.key);
   }
 
-  public removeAll(arg: RemoveAllOptions): Promise<boolean> {
+  public removeAll(arg?: RemoveAllOptions): Promise<boolean> {
     return new Promise((resolve, reject) => {
       resolve(com.orhanobut.hawk.Hawk.deleteAll());
     });
   }
 
-  public removeAllSync(arg: RemoveAllOptions): boolean {
+  public removeAllSync(arg?: RemoveAllOptions): boolean {
     return com.orhanobut.hawk.Hawk.deleteAll();
   }
 }

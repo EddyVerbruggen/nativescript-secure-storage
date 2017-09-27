@@ -149,23 +149,23 @@ const success = secureStorage.removeSync({
 ##### JavaScript
 ```js
 // async
-secureStorage.removeAll(null).then(
+secureStorage.removeAll().then(
   function(success) {
     console.log("Removed value? " + success);
   }
 );
 
 // sync
-var success = secureStorage.removeAllSync(null);
+var success = secureStorage.removeAllSync();
 ```
 
 ##### TypeScript
 ```typescript
 // async
-secureStorage.removeAll(null).then(success => console.log("Successfully removed a value? " + success));
+secureStorage.removeAll().then(success => console.log("Successfully removed a value? " + success));
 
 // sync
-const success = secureStorage.removeAllSync(null);
+const success = secureStorage.removeAllSync();
 ```
 
 ## Usage with Angular
@@ -197,3 +197,4 @@ export class MyComponent {
 ## Credits
 * On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
 * On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
+* Thanks, [Prabu Devarrajan](https://github.com/prabudevarrajan) for [adding the `deleteAll` function](https://github.com/EddyVerbruggen/nativescript-secure-storage/pull/11)!
