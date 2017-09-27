@@ -16,7 +16,7 @@
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-secure-storage && tns plugin add .. && tns install",
     "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
-    "test": "npm run tslint && npm run tslint.demo",
+    "test": "npm i && npm run tslint && npm run tslint.demo",
     "tslint": "tslint *.ts",
     "tslint.demo": "tslint demo/app/*.ts"
   },
