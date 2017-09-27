@@ -14,6 +14,10 @@ export interface RemoveOptions {
   key: string;
 }
 
+export interface RemoveAllOptions {
+  service?: string;
+}
+
 export interface SecureStorageApi {
   get(arg: GetOptions): Promise<any>;
   getSync(arg: GetOptions): any;
@@ -23,4 +27,7 @@ export interface SecureStorageApi {
 
   remove(arg: RemoveOptions): Promise<boolean>;
   removeSync(arg: RemoveOptions): boolean;
+
+  removeAll(arg: RemoveAllOptions): Promise<boolean>;
+  removeAllSync(arg: RemoveAllOptions): boolean;
 }

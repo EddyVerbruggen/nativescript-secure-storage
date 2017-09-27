@@ -1,4 +1,4 @@
-import {SecureStorageApi, GetOptions, SetOptions, RemoveOptions} from "./secure-storage.common";
+import {SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions} from "./secure-storage.common";
 const utils = require("tns-core-modules/utils/utils");
 
 declare const com: any;
@@ -39,5 +39,15 @@ export class SecureStorage implements SecureStorageApi {
 
   removeSync(arg: RemoveOptions): boolean {
     return com.orhanobut.hawk.Hawk.delete(arg.key);
+  }
+
+  public removeAll(arg: RemoveAllOptions): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      resolve(com.orhanobut.hawk.Hawk.deleteAll());
+    });
+  }
+
+  public removeAllSync(arg: RemoveAllOptions): boolean {
+    return com.orhanobut.hawk.Hawk.deleteAll();
   }
 }

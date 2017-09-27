@@ -1,7 +1,7 @@
-import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions } from "./secure-storage.common";
+import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions } from "./secure-storage.common";
 import { ios as iosUtils } from "tns-core-modules/utils/utils";
 
-declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly: any;
+declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle, NSProcessInfo, UIDevice: any;
 
 export class SecureStorage implements SecureStorageApi {
 
@@ -125,4 +125,58 @@ export class SecureStorage implements SecureStorageApi {
       return false;
     }
   }
+
+  public removeAll(arg: RemoveAllOptions): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (this.isSimulator) {
+        let defaults = NSUserDefaults.standardUserDefaults;
+        let bundleId = NSBundle.mainBundle.bundleIdentifier;
+        defaults.removePersistentDomainForName(bundleId);
+        resolve(true);
+        return;
+      }
+
+      try {
+        let allAccounts = SAMKeychain.allAccounts();
+        for ( let i = 0; i < allAccounts.count; i++) {
+          // Below code uses hard-coded 'acct', because NativeScript doesn't
+          // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
+          let key = allAccounts[i].objectForKey('acct');
+          let query = SAMKeychainQuery.new();
+          query.service = arg.service || this.defaultService;
+          query.account = key;
+          query.deleteItem();
+        }
+        resolve(true);
+      } catch (e) {
+        resolve(false);
+      }
+    });
+  }
+
+  public removeAllSync(arg: RemoveAllOptions): boolean {
+    if (this.isSimulator) {
+      let defaults = NSUserDefaults.standardUserDefaults;
+      let bundleId = NSBundle.mainBundle.bundleIdentifier;
+      defaults.removePersistentDomainForName(bundleId);
+      return true;
+    }
+
+    try {
+      let allAccounts = SAMKeychain.allAccounts();
+      for ( let i = 0; i < allAccounts.count; i++) {
+        // Below code uses hard-coded 'acct', because NativeScript doesn't
+        // allow me to access kSSKeychainAccountKey constant variable in SSKeychain.h file
+        let key = allAccounts[i].objectForKey('acct');
+        let query = SAMKeychainQuery.new();
+        query.service = arg.service || this.defaultService;
+        query.account = key;
+        query.deleteItem();
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
 }

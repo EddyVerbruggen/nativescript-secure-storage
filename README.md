@@ -144,6 +144,30 @@ const success = secureStorage.removeSync({
 });
 ```
 
+### `removeAll` | `removeAllSync`
+
+##### JavaScript
+```js
+// async
+secureStorage.removeAll(null).then(
+  function(success) {
+    console.log("Removed value? " + success);
+  }
+);
+
+// sync
+var success = secureStorage.removeAllSync(null);
+```
+
+##### TypeScript
+```typescript
+// async
+secureStorage.removeAll(null).then(success => console.log("Successfully removed a value? " + success));
+
+// sync
+const success = secureStorage.removeAllSync(null);
+```
+
 ## Usage with Angular
 
 In your view:
@@ -159,7 +183,7 @@ import { SecureStorage } from "nativescript-secure-storage";
 
 export class MyComponent {
   secureStorage = new SecureStorage();
-  
+
   // a method that can be called from your view
   setSecureValue() {
     this.secureStorage.set({
