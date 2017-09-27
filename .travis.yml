@@ -13,6 +13,6 @@ android:
     - platform-tools
 
 install:
-    - npm install -g nativescript
+    - echo no | npm install -g nativescript
     - tns usage-reporting disable
     - tns error-reporting disable
