@@ -140,19 +140,21 @@ export class SecureStorage implements SecureStorageApi {
         return;
       }
 
-      try {
-        let allAccounts = SAMKeychain.allAccounts();
-        for (let i = 0; i < allAccounts.count; i++) {
-          let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+      let allAccounts = SAMKeychain.allAccounts();
+      for (let i = 0; i < allAccounts.count; i++) {
+        let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+        try {
+          // console.log("SecureStorage: remove key -> " + key);
           let query = SAMKeychainQuery.new();
           query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
           query.account = key;
           query.deleteItem();
         }
-        resolve(true);
-      } catch (e) {
-        resolve(false);
+        catch (e) {
+          console.log("SecureStorage: Could not remove key -> " + key);
+        }
       }
+      resolve(true);
     });
   }
 
@@ -164,19 +166,21 @@ export class SecureStorage implements SecureStorageApi {
       return true;
     }
 
-    try {
-      let allAccounts = SAMKeychain.allAccounts();
-      for (let i = 0; i < allAccounts.count; i++) {
-        let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+    let allAccounts = SAMKeychain.allAccounts();
+    for (let i = 0; i < allAccounts.count; i++) {
+      let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+      try {
+        // console.log("SecureStorage: remove key -> " + key);
         let query = SAMKeychainQuery.new();
         query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
         query.account = key;
         query.deleteItem();
       }
-      return true;
-    } catch (e) {
-      return false;
+      catch (e) {
+        console.log("SecureStorage: Could not remove key -> " + key);
+      }
     }
+    return true;
   }
 
 }
