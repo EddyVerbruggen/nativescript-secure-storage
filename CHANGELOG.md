@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.2.2](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.2.0) (2018-02-01)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.1...2.2.0)
+
+**Implemented enhancements:**
+
+- Catch errors when trying to remove keys that don't exist in iOS. [\#15](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/15)
+- Bump SAMKeychain Pod dependency [\#16](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/16)
+
 ## [2.2.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.2.0) (2017-08-11)
 [Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.1...2.2.0)
 
