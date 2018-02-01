@@ -144,13 +144,11 @@ export class SecureStorage implements SecureStorageApi {
       for (let i = 0; i < allAccounts.count; i++) {
         let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
         try {
-          // console.log("SecureStorage: remove key -> " + key);
           let query = SAMKeychainQuery.new();
           query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
           query.account = key;
           query.deleteItem();
-        }
-        catch (e) {
+        } catch (e) {
           console.log("SecureStorage: Could not remove key -> " + key);
         }
       }
@@ -170,13 +168,11 @@ export class SecureStorage implements SecureStorageApi {
     for (let i = 0; i < allAccounts.count; i++) {
       let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
       try {
-        // console.log("SecureStorage: remove key -> " + key);
         let query = SAMKeychainQuery.new();
         query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
         query.account = key;
         query.deleteItem();
-      }
-      catch (e) {
+      } catch (e) {
         console.log("SecureStorage: Could not remove key -> " + key);
       }
     }
