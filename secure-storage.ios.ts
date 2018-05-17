@@ -1,18 +1,18 @@
 import { SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions } from "./secure-storage.common";
 import { ios as iosUtils } from "tns-core-modules/utils/utils";
 
-declare const SAMKeychainQuery, SAMKeychain, kSecAttrAccessibleAlwaysThisDeviceOnly, NSUserDefaults, NSBundle,
-    NSProcessInfo, UIDevice: any;
+declare const SAMKeychainQuery, SAMKeychain;
 
 export class SecureStorage implements SecureStorageApi {
   private isSimulator: boolean;
+  private accessibilityType: string;
 
   private static defaultService: string = "my_app";
 
   // This is a copy of 'kSSKeychainAccountKey_copy' which is not exposed from SSKeychain.h by {N}
   private static kSSKeychainAccountKey_copy: string = "acct";
 
-  constructor() {
+  constructor(accessibilityType: string = kSecAttrAccessibleAlwaysThisDeviceOnly) {
     const processInfo = iosUtils.getter(NSProcessInfo, NSProcessInfo.processInfo);
     const isMinIOS9 = processInfo.isOperatingSystemAtLeastVersion({majorVersion: 9, minorVersion: 0, patchVersion: 0});
     if (isMinIOS9) {
@@ -26,6 +26,8 @@ export class SecureStorage implements SecureStorageApi {
     if (this.isSimulator) {
       console.log("Falling back to storing data in NSUserDefaults because of a Simulator bug");
     }
+
+    this.accessibilityType = accessibilityType;
   }
 
   public get(arg: GetOptions): Promise<any> {
@@ -72,7 +74,7 @@ export class SecureStorage implements SecureStorageApi {
         return;
       }
 
-      SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
+      SAMKeychain.setAccessibilityType(this.accessibilityType);
       let query = SAMKeychainQuery.new();
       query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
@@ -87,7 +89,7 @@ export class SecureStorage implements SecureStorageApi {
       return true;
     }
 
-    SAMKeychain.setAccessibilityType(kSecAttrAccessibleAlwaysThisDeviceOnly);
+    SAMKeychain.setAccessibilityType(this.accessibilityType);
     let query = SAMKeychainQuery.new();
     query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
