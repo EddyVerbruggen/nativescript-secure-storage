@@ -1,7 +1,14 @@
 # Change Log
 
-## [2.2.2](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.2.0) (2018-02-01)
-[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.1.1...2.2.0)
+## [2.3.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.3.0) (2018-05-18)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.2.2...2.3.0)
+
+**Implemented enhancements:**
+
+- Increase the security for when the keys are accessible on iOS [\#19](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/19)
+
+## [2.2.2](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.2.2) (2018-02-01)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.2.0...2.2.2)
 
 **Implemented enhancements:**
 
