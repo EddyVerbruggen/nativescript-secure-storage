@@ -18,7 +18,7 @@
     "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && npx rimraf -- package-lock.json && cd ../src",
     "test.android": "npm run build && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
     "test.ios": "npm run build && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"**/platforms/**\" --exclude \"**/typings/**\"  --exclude \"**/types/**\"",
     "plugin.tscwatch": "npm run tsc -- -w",
     "demo.ios": "npm run tsc && cd ../demo && tns run ios --syncAllFiles",
     "demo.android": "npm run tsc && cd ../demo && tns run android --syncAllFiles",
