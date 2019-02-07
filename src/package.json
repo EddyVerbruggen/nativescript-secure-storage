@@ -1,0 +1,66 @@
+{
+  "name": "nativescript-secure-storage",
+  "version": "2.4.0",
+  "description": "Secure Storage NativeScript plugin",
+  "main": "secure-storage",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "2.3.0",
+      "ios": "2.3.0"
+    }
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "build": "npm i && npm run tsc && npm run build.native",
+    "build.native": "echo 'skipping build-native script because its not currently needed'",
+    "build.native.disabled": "node scripts/build-native.js",
+    "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && npx rimraf -- package-lock.json && cd ../src",
+    "test.android": "npm run build && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
+    "test.ios": "npm run build && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+    "plugin.tscwatch": "npm run tsc -- -w",
+    "demo.ios": "npm run tsc && cd ../demo && tns run ios --syncAllFiles",
+    "demo.android": "npm run tsc && cd ../demo && tns run android --syncAllFiles",
+    "demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
+    "plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-secure-storage && tns plugin add ../src",
+    "clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+    "prepack": "npm run build.native",
+    "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EddyVerbruggen/nativescript-secure-storage.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "iOS",
+    "KeyChain",
+    "KeyStore",
+    "Secure Storage",
+    "Storage",
+    "SharedPreferences",
+    "Facebook conceal"
+  ],
+  "author": {
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/EddyVerbruggen/nativescript-secure-storage/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/EddyVerbruggen/nativescript-secure-storage",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "tns-core-modules": "~5.1.2",
+    "tns-platform-declarations": "~5.1.2",
+    "typescript": "~3.1.6",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.11.0",
+    "semver": "^5.6.0"
+  }
+}
