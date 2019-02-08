@@ -27,7 +27,7 @@
     "demo-vue.android": "npm run tsc && cd ../demo-vue && tns run android --bundle",
     "plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-secure-storage && tns plugin add ../src",
     "clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i",
-    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude \"**/node_modules/**\" --exclude \"**/platforms/**\" --exclude \"**/typings/**\"  --exclude \"**/types/**\"",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude \"**/node_modules/**\" --exclude \"**/platforms/**\" --exclude \"**/typings/**\" --exclude \"**/types/**\"",
     "prepack": "npm run build.native",
     "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'"
   },
