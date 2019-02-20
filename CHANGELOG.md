@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.4.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.4.0) (2019-02-08)
+
+- Change android gradle config to use "implementation" instead of "compile"
+- add NativeScript VueJs Demo
+- Update to refer to TNS version 5.1
+- align plugin strcture with NativeScript plugin seed
+
+[Milestone](https://github.com/EddyVerbruggen/nativescript-secure-storage/milestone/8?closed=1)
+[Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.3.0...2.4.0))
+
 ## [2.3.0](https://github.com/eddyverbruggen/nativescript-secure-storage/tree/2.3.0) (2018-05-18)
 [Full Changelog](https://github.com/eddyverbruggen/nativescript-secure-storage/compare/2.2.2...2.3.0)
 
