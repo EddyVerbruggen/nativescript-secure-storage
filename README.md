@@ -168,8 +168,10 @@ secureStorage.removeAll().then(success => console.log("Successfully removed a va
 const success = secureStorage.removeAllSync();
 ```
 
-### `clearAllOnFirstRun` | `clearAllOnFirstRunSync` ###
+### `clearAllOnFirstRun` | `clearAllOnFirstRunSync`
+
 Declaring those methods in `app.ts` before the `run()` function will detect if that is the first run of you app and clear all data due to `removeAll` and `removeAllSync`
+
 ---
 **NOTE**
 
