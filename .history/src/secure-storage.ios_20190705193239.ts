@@ -10,6 +10,7 @@ export class SecureStorage implements SecureStorageApi {
     private accessibilityType: string;
 
     private static defaultService: string = "my_app";
+    private isFirstRun: boolean = applicationSettings.getBoolean("__IS_FIRST_RUN__", true);
 
     // This is a copy of 'kSSKeychainAccountKey_copy' which is not exposed from SSKeychain.h by {N}
     private static kSSKeychainAccountKey_copy: string = "acct";
@@ -225,9 +226,5 @@ export class SecureStorage implements SecureStorageApi {
                 resolve(false);
             }
         });
-    }
-
-    private get isFirstRun(): boolean {
-        return applicationSettings.getBoolean("__IS_FIRST_RUN__", true);
     }
 }

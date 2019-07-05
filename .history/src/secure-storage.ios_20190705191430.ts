@@ -4,7 +4,6 @@ import * as applicationSettings from 'tns-core-modules/application-settings';
 
 declare const SAMKeychainQuery, SAMKeychain;
 
-
 export class SecureStorage implements SecureStorageApi {
     private isSimulator: boolean;
     private accessibilityType: string;
@@ -183,41 +182,10 @@ export class SecureStorage implements SecureStorageApi {
         return true;
     }
 
-    public clearAllOnFirstRun(): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            if(this.isFirstRun === true) {
-                this.removeAll().then(res => {
-                    if(res)
-                        applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
-                }).catch(err => {
-                    console.log(err);
-                });
-                resolve(true);
-            }
-            else {
-                resolve(false);
-            }
-        });
-    }
-
-    public clearAllOnFirstRunSync(): boolean {
-        try {
-            if(this.isFirstRun === true) {
-                const res = this.removeAllSync();
-                if(res)
-                    applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
-                return true;
-            }
-            return false;
-        }catch(e) {
-            console.log(e);
-            return false;
-        }
-    }
-
     public doOnFirstRun(): Promise<boolean> {
+        const isFirstRun = applicationSettings.getBoolean("__IS_FIRST_RUN__", true);
         return new Promise<boolean>((resolve, reject) => {
-            if(this.isFirstRun === true) {
+            if(isFirstRun === true) {
                 applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
                 resolve(true);
             }
@@ -225,9 +193,5 @@ export class SecureStorage implements SecureStorageApi {
                 resolve(false);
             }
         });
-    }
-
-    private get isFirstRun(): boolean {
-        return applicationSettings.getBoolean("__IS_FIRST_RUN__", true);
     }
 }

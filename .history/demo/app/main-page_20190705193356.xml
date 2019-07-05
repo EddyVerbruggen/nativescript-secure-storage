@@ -20,8 +20,7 @@
       <Button text="Clear all on first run sync" tap="{{ doClearAllOnFirstRunSync }}" class="button-e" />
       <Button text="Clear all on first run, async" tap="{{ doClearAllOnFirstRun }}" class="button-e" />
       
-      <Button text="Is a frist run ?" tap="{{ dOnFirstRun }}" class="button-f" />
-      <Label text="{{ isFirstRun }}" class="message" textWrap="true" />
+      <Button text="Do stuff on first run" tap="{{ dOnFirstRun }}" class="button-f" />
     </StackLayout>
   </ScrollView>
 </Page>

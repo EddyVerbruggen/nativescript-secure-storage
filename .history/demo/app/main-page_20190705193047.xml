@@ -17,11 +17,10 @@
       <Button text="Remove all values, sync" tap="{{ doRemoveAllSync }}" class="button-d button-group-first" />
       <Button text="Remove all values, async" tap="{{ doRemoveAll }}" class="button-d" />
       
-      <Button text="Clear all on first run sync" tap="{{ doClearAllOnFirstRunSync }}" class="button-e" />
-      <Button text="Clear all on first run, async" tap="{{ doClearAllOnFirstRun }}" class="button-e" />
+      <Button text="Do stuff on first run" tap="{{ doOnFirstRun }}" class="button-e" />
+      <Button text="Do stuff on first run" tap="{{ doOnFirstRun }}" class="button-e" />
       
-      <Button text="Is a frist run ?" tap="{{ dOnFirstRun }}" class="button-f" />
-      <Label text="{{ isFirstRun }}" class="message" textWrap="true" />
+      <Button text="Do stuff on first run" tap="{{ doOnFirstRun }}" class="button-f" />
     </StackLayout>
   </ScrollView>
 </Page>

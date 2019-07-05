@@ -94,10 +94,4 @@ export class HelloWorldModel extends Observable {
             alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
     });
   }
-
-  public dOnFirstRun() {
-    this.secureStorage.doOnFirstRun().then(res => {
-        this.set("isFirstRun",res); 
-    });
-  }
 }
