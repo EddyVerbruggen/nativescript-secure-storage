@@ -185,9 +185,9 @@ export class SecureStorage implements SecureStorageApi {
 
     public clearAllOnFirstRun(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            if(this.isFirstRun === true) {
+            if (this.isFirstRun === true) {
                 this.removeAll().then(res => {
-                    if(res)
+                    if (res)
                         applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
                 }).catch(err => {
                     console.log(err);
@@ -202,14 +202,14 @@ export class SecureStorage implements SecureStorageApi {
 
     public clearAllOnFirstRunSync(): boolean {
         try {
-            if(this.isFirstRun === true) {
+            if (this.isFirstRun === true) {
                 const res = this.removeAllSync();
-                if(res)
+                if (res)
                     applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
                 return true;
             }
             return false;
-        }catch(e) {
+        } catch (e) {
             console.log(e);
             return false;
         }
@@ -217,7 +217,7 @@ export class SecureStorage implements SecureStorageApi {
 
     public doOnFirstRun(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            if(this.isFirstRun === true) {
+            if (this.isFirstRun === true) {
                 applicationSettings.setBoolean("__IS_FIRST_RUN__", false);
                 resolve(true);
             }

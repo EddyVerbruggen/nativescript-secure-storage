@@ -80,7 +80,7 @@ export class HelloWorldModel extends Observable {
 
   public doClearAllOnFirstRunSync() {
     const res: boolean = this.secureStorage.clearAllOnFirstRunSync();
-    if(res)
+    if (res)
         this.set("lastRetrievedValue", "");
     else
         alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
@@ -88,7 +88,7 @@ export class HelloWorldModel extends Observable {
 
   public doClearAllOnFirstRun() {
     this.secureStorage.clearAllOnFirstRun().then(res => {
-        if(res)
+        if (res)
             this.set("lastRetrievedValue", "");
         else
             alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
@@ -97,7 +97,7 @@ export class HelloWorldModel extends Observable {
 
   public dOnFirstRun() {
     this.secureStorage.doOnFirstRun().then(res => {
-        this.set("isFirstRun",res); 
+        this.set("isFirstRun", res);
     });
   }
 }
