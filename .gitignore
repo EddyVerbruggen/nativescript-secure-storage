@@ -3,6 +3,7 @@
 *.js
 *.js.map
 *.log
+*.tgz
 !scripts/*.js
 demo/app/*.js
 !demo/karma.conf.js
