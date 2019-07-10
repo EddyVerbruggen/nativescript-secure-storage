@@ -1,3 +1,5 @@
+import * as applicationSettings from "tns-core-modules/application-settings";
+
 export interface SetOptions {
   service?: string;
   key: string;
@@ -18,16 +20,64 @@ export interface RemoveAllOptions {
   service?: string;
 }
 
-export interface SecureStorageApi {
-  get(arg: GetOptions): Promise<any>;
-  getSync(arg: GetOptions): any;
+export abstract class SecureStorageCommon {
+  protected static IS_FIRST_RUN = "__IS_FIRST_RUN__";
+  private isFirst: boolean;
 
-  set(arg: SetOptions): Promise<boolean>;
-  setSync(arg: SetOptions): boolean;
+  constructor() {
+    this.isFirst = applicationSettings.getBoolean(SecureStorageCommon.IS_FIRST_RUN, true);
+    if (this.isFirst) {
+      applicationSettings.setBoolean(SecureStorageCommon.IS_FIRST_RUN, false);
+    }
+  }
 
-  remove(arg: RemoveOptions): Promise<boolean>;
-  removeSync(arg: RemoveOptions): boolean;
+  abstract get(arg: GetOptions): Promise<any>;
 
-  removeAll(arg?: RemoveAllOptions): Promise<boolean>;
-  removeAllSync(arg?: RemoveAllOptions): boolean;
+  abstract getSync(arg: GetOptions): any;
+
+  abstract set(arg: SetOptions): Promise<boolean>;
+
+  abstract setSync(arg: SetOptions): boolean;
+
+  abstract remove(arg: RemoveOptions): Promise<boolean>;
+
+  abstract removeSync(arg: RemoveOptions): boolean;
+
+  abstract removeAll(arg?: RemoveAllOptions): Promise<boolean>;
+
+  abstract removeAllSync(arg?: RemoveAllOptions): boolean;
+
+  public isFirstRunSync(): boolean {
+    return this.isFirst;
+  }
+
+  public isFirstRun(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(this.isFirstRunSync());
+    });
+  }
+
+  public clearAllOnFirstRun(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      if (this.isFirstRunSync()) {
+        this.removeAll();
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  }
+
+  public clearAllOnFirstRunSync(): boolean {
+    try {
+      if (this.isFirstRunSync()) {
+        this.removeAllSync();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
 }

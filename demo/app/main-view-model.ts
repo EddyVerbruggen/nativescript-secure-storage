@@ -80,24 +80,32 @@ export class HelloWorldModel extends Observable {
 
   public doClearAllOnFirstRunSync() {
     const res: boolean = this.secureStorage.clearAllOnFirstRunSync();
-    if (res)
-        this.set("lastRetrievedValue", "");
-    else
-        alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
+    if (res) {
+      console.log("Cleared");
+      this.set("lastRetrievedValue", "");
+    } else {
+      alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
+    }
   }
 
   public doClearAllOnFirstRun() {
     this.secureStorage.clearAllOnFirstRun().then(res => {
-        if (res)
-            this.set("lastRetrievedValue", "");
-        else
-            alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
+      if (res) {
+        console.log("Cleared");
+        this.set("lastRetrievedValue", "");
+      } else {
+        alert("Is not the first run ! \n use `removeAllSync` or `removeAll` ;-)");
+      }
     });
   }
 
-  public dOnFirstRun() {
-    this.secureStorage.doOnFirstRun().then(res => {
-        this.set("isFirstRun", res);
+  public doIsFirstRun() {
+    this.secureStorage.isFirstRun().then(isFirst => {
+      this.set("isFirstRun", isFirst);
     });
+  }
+
+  public doIsFirstRunSync() {
+    this.set("isFirstRun", this.secureStorage.isFirstRunSync());
   }
 }

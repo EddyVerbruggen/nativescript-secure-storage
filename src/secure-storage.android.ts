@@ -1,13 +1,20 @@
-import {SecureStorageApi, GetOptions, SetOptions, RemoveOptions, RemoveAllOptions} from "./secure-storage.common";
+import {
+  GetOptions,
+  SetOptions,
+  RemoveOptions,
+  RemoveAllOptions,
+  SecureStorageCommon
+} from "./secure-storage.common";
 const utils = require("tns-core-modules/utils/utils");
 
 declare const com: any;
 
-export class SecureStorage implements SecureStorageApi {
+export class SecureStorage extends SecureStorageCommon {
 
   private hawk: any; // com.orhanobut.hawk.Hawk
 
   constructor() {
+    super();
     this.hawk = com.orhanobut.hawk.Hawk.init(utils.ad.getApplicationContext()).build();
   }
 

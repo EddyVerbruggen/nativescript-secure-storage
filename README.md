@@ -169,22 +169,20 @@ const success = secureStorage.removeAllSync();
 ```
 
 ### `clearAllOnFirstRun` | `clearAllOnFirstRunSync`
+These functions can be used if you want to clear data when your app is reinstalled.
 
-Declaring those methods in `app.ts` before the `run()` function will detect if that is the first run of you app and clear all data due to `removeAll` and `removeAllSync`
+This is only really useful **on iOS** because if you write something (through this plugin) to the Keychain, this data **won't** be removed when the app is uninstalled.
+So the next time the same app is installed, it will find the data in the keychain.
 
----
-**NOTE**
+So if you want to clear 'lingering' data from a previous install, make sure you run one of these
+methods before using other methods this plugin provides.
 
-`clearAllOnFirstRun` and `clearAllOnFirstRunSync` and `doOnFirstRun` it doesn't remove data on uninstall, but it will clear the keychain in case the app runs for "the first time" (since an uninstall). Which effectively means lingering keychain data will not be used when reinstalling the app.
-
----
 ##### JavaScript
 ```js
 // async
 secureStorage.clearAllOnFirstRun().then(
   function(success) {
-      const msg = success ? "Successfully removed all data on the first run" : "Can not removed data !!! Is not the first run";
-      console.log(msg);
+      console.log(success ? "Successfully removed all data on the first run" : "Data not removed because this is not the first run");
   }
 );
 
@@ -196,31 +194,27 @@ var success = secureStorage.clearAllOnFirstRunSync();
 ```typescript
 // async
 secureStorage.clearAllOnFirstRun().then(success => {
-    const msg = success ? "Successfully removed all data on the first run" : "Can not removed data !!! Is not the first run";
-    console.log(msg);
+    console.log(success ? "Successfully removed all data on the first run" : "Data not removed because this is not the first run");
 });
 
 // sync
 const success = secureStorage.clearAllOnFirstRunSync();
 ```
 
-### `clearAllOnFirstRun` | `clearAllOnFirstRunSync`
-
-##### JavaScript
-```js
-// async
-secureStorage.doOnFirstRun().then(
-  function(success) {
-      console.log(`Is that the first run ? : ${success}`);
-  }
-);
-```
+### `isFirstRun` | `isFirstRunSync`
+As a bonus, you can piggyback the 'first run' mechanism to do anything you want when the plugin detects
+this is the first run (after an install or install-delete-reinstall).
 
 ##### TypeScript
 ```typescript
+// sync
+if (secureStorage.isFirstRunSync()) {
+  // do whatever you want
+}
+
 // async
-secureStorage.doOnFirstRun().then(success => {
-    console.log(`Is that the first run ? : ${success}`);
+secureStorage.isFirstRun().then(isFirst => {
+  // if isFirst is true, do whatever you like
 });
 ```
 
