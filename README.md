@@ -168,6 +168,62 @@ secureStorage.removeAll().then(success => console.log("Successfully removed a va
 const success = secureStorage.removeAllSync();
 ```
 
+### `clearAllOnFirstRun` | `clearAllOnFirstRunSync`
+
+Declaring those methods in `app.ts` before the `run()` function will detect if that is the first run of you app and clear all data due to `removeAll` and `removeAllSync`
+
+---
+**NOTE**
+
+`clearAllOnFirstRun` and `clearAllOnFirstRunSync` and `doOnFirstRun` it doesn't remove data on uninstall, but it will clear the keychain in case the app runs for "the first time" (since an uninstall). Which effectively means lingering keychain data will not be used when reinstalling the app.
+
+---
+##### JavaScript
+```js
+// async
+secureStorage.clearAllOnFirstRun().then(
+  function(success) {
+      const msg = success ? "Successfully removed all data on the first run" : "Can not removed data !!! Is not the first run";
+      console.log(msg);
+  }
+);
+
+// sync
+var success = secureStorage.clearAllOnFirstRunSync();
+```
+
+##### TypeScript
+```typescript
+// async
+secureStorage.clearAllOnFirstRun().then(success => {
+    const msg = success ? "Successfully removed all data on the first run" : "Can not removed data !!! Is not the first run";
+    console.log(msg);
+});
+
+// sync
+const success = secureStorage.clearAllOnFirstRunSync();
+```
+
+### `clearAllOnFirstRun` | `clearAllOnFirstRunSync`
+
+##### JavaScript
+```js
+// async
+secureStorage.doOnFirstRun().then(
+  function(success) {
+      console.log(`Is that the first run ? : ${success}`);
+  }
+);
+```
+
+##### TypeScript
+```typescript
+// async
+secureStorage.doOnFirstRun().then(success => {
+    console.log(`Is that the first run ? : ${success}`);
+});
+```
+
 ## Usage with Angular
 
 In your view:
