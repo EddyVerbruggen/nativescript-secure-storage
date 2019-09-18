@@ -27,10 +27,6 @@ export class SecureStorage extends SecureStorageCommon {
       this.isSimulator = UIDevice.currentDevice.name.toLowerCase().indexOf("simulator") > -1;
     }
 
-    if (this.isSimulator) {
-      console.log("Falling back to storing data in NSUserDefaults because of a Simulator bug");
-    }
-
     this.accessibilityType = accessibilityType;
   }
 
