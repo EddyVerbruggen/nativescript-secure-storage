@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.6.0](https://github.com/EddyVerbruggen/nativescript-secure-storage/milestone/10?closed=1) (2019-09-19)
+See the link above.
+
+
 ## [2.5.0](https://github.com/EddyVerbruggen/nativescript-secure-storage/milestone/9?closed=1) (2019-07-10)
 
 - Add the Ability to clear data on the "first run" of the App

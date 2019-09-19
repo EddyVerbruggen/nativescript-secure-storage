@@ -17,7 +17,7 @@ export class SecureStorage extends SecureStorageCommon {
   // This is a copy of 'kSSKeychainAccountKey_copy' which is not exposed from SSKeychain.h by {N}
   private static kSSKeychainAccountKey_copy: string = "acct";
 
-  constructor(accessibilityType: string = kSecAttrAccessibleAlwaysThisDeviceOnly) {
+  constructor(accessibilityType: string = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly) {
     super();
     const isMinIOS9 = NSProcessInfo.processInfo.isOperatingSystemAtLeastVersion({majorVersion: 9, minorVersion: 0, patchVersion: 0});
     if (isMinIOS9) {
