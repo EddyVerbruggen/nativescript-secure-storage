@@ -143,17 +143,20 @@ export class SecureStorage extends SecureStorageCommon {
       }
 
       const allAccounts = SAMKeychain.allAccounts();
-      for (let i = 0; i < allAccounts.count; i++) {
-        let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
-        try {
-          let query = SAMKeychainQuery.new();
-          query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
-          query.account = key;
-          query.deleteItem();
-        } catch (e) {
-          console.log("SecureStorage: Could not remove key -> " + key);
+      if (allAccounts) {
+        for (let i = 0; i < allAccounts.count; i++) {
+          let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+          try {
+            let query = SAMKeychainQuery.new();
+            query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
+            query.account = key;
+            query.deleteItem();
+          } catch (e) {
+            console.log("SecureStorage: Could not remove key -> " + key);
+          }
         }
       }
+      
       resolve(true);
     });
   }
@@ -167,15 +170,17 @@ export class SecureStorage extends SecureStorageCommon {
     }
 
     const allAccounts = SAMKeychain.allAccounts();
-    for (let i = 0; i < allAccounts.count; i++) {
-      let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
-      try {
-        let query = SAMKeychainQuery.new();
-        query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
-        query.account = key;
-        query.deleteItem();
-      } catch (e) {
-        console.log("SecureStorage: Could not remove key -> " + key);
+    if (allAccounts) {
+      for (let i = 0; i < allAccounts.count; i++) {
+        let key = allAccounts[i].objectForKey(SecureStorage.kSSKeychainAccountKey_copy);
+        try {
+          let query = SAMKeychainQuery.new();
+          query.service = arg && arg.service ? arg.service : SecureStorage.defaultService;
+          query.account = key;
+          query.deleteItem();
+        } catch (e) {
+          console.log("SecureStorage: Could not remove key -> " + key);
+        }
       }
     }
     return true;
