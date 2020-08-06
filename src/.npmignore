@@ -11,3 +11,4 @@ platforms/ios/*.txt
 *.json
 !*.d.ts
 references.d.ts
+*.tgz

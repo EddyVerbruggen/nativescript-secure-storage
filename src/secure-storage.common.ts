@@ -1,4 +1,4 @@
-import * as applicationSettings from "tns-core-modules/application-settings";
+import { ApplicationSettings } from "@nativescript/core";
 
 export interface SetOptions {
   service?: string;
@@ -25,9 +25,9 @@ export abstract class SecureStorageCommon {
   private isFirst: boolean;
 
   constructor() {
-    this.isFirst = applicationSettings.getBoolean(SecureStorageCommon.IS_FIRST_RUN, true);
+    this.isFirst = ApplicationSettings.getBoolean(SecureStorageCommon.IS_FIRST_RUN, true);
     if (this.isFirst) {
-      applicationSettings.setBoolean(SecureStorageCommon.IS_FIRST_RUN, false);
+      ApplicationSettings.setBoolean(SecureStorageCommon.IS_FIRST_RUN, false);
     }
   }
 

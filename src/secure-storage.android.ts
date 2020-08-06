@@ -5,7 +5,7 @@ import {
   RemoveAllOptions,
   SecureStorageCommon
 } from "./secure-storage.common";
-const utils = require("tns-core-modules/utils/utils");
+import { Utils } from '@nativescript/core';
 
 declare const com: any;
 
@@ -15,7 +15,7 @@ export class SecureStorage extends SecureStorageCommon {
 
   constructor() {
     super();
-    this.hawk = com.orhanobut.hawk.Hawk.init(utils.ad.getApplicationContext()).build();
+    this.hawk = com.orhanobut.hawk.Hawk.init(Utils.android.getApplicationContext()).build();
   }
 
   public get(arg: GetOptions): Promise<any> {
