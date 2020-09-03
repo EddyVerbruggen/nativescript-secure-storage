@@ -1,10 +1,4 @@
-import {
-  GetOptions,
-  SetOptions,
-  RemoveOptions,
-  RemoveAllOptions,
-  SecureStorageCommon
-} from "./secure-storage.common";
+import { GetOptions, RemoveAllOptions, RemoveOptions, SecureStorageCommon, SetOptions } from "./secure-storage.common";
 
 declare const SAMKeychainQuery, SAMKeychain;
 
@@ -18,24 +12,24 @@ export class SecureStorage extends SecureStorageCommon {
   private static kSSKeychainAccountKey_copy: string = "acct";
 
   constructor(
-    accessibilityType: string = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
-    disableFallbackToUserDefaults = false
+      accessibilityType: string = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+      disableFallbackToUserDefaults = false
   ) {
     super();
+
     if (disableFallbackToUserDefaults) {
       this.isSimulator = false;
     } else {
-      const isMinIOS9 = NSProcessInfo.processInfo.isOperatingSystemAtLeastVersion(
-        { majorVersion: 9, minorVersion: 0, patchVersion: 0 }
-      );
+      const isMinIOS9 = NSProcessInfo.processInfo.isOperatingSystemAtLeastVersion({
+        majorVersion: 9,
+        minorVersion: 0,
+        patchVersion: 0
+      });
       if (isMinIOS9) {
-        const simDeviceName = NSProcessInfo.processInfo.environment.objectForKey(
-          "SIMULATOR_DEVICE_NAME"
-        );
+        const simDeviceName = NSProcessInfo.processInfo.environment.objectForKey("SIMULATOR_DEVICE_NAME");
         this.isSimulator = simDeviceName !== null;
       } else {
-        this.isSimulator =
-          UIDevice.currentDevice.name.toLowerCase().indexOf("simulator") > -1;
+        this.isSimulator = UIDevice.currentDevice.name.toLowerCase().indexOf("simulator") > -1;
       }
     }
 
@@ -168,7 +162,7 @@ export class SecureStorage extends SecureStorageCommon {
           }
         }
       }
-      
+
       resolve(true);
     });
   }
