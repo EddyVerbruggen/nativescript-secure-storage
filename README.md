@@ -250,6 +250,12 @@ declare const kSecAttrAccessibleWhenUnlockedThisDeviceOnly; // This is needed in
 const secureStorage = new SecureStorage(kSecAttrAccessibleWhenUnlockedThisDeviceOnly);
 ```
 
+## iOS Simulator
+
+Currently this plugin defaults to using `NSUserDefaults` on **iOS Simulators**. You can change this behaviour by providing `disableFallbackToUserDefaults` the constructor of `SecureStorage`. This then uses the keychain instead of `NSUserDefaults` on simulators.
+
+If you're running into issues similar to [Issue_10](https://github.com/EddyVerbruggen/nativescript-secure-storage/issues/10) consider using the default behaviour again.
+
 ## Credits
 * On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
 * On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
