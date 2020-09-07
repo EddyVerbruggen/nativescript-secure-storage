@@ -1,4 +1,4 @@
-import { NativeScriptConfig } from '@nativescript/core'
+import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
   id: 'org.nativescript.plugindemo.securestorage',
@@ -10,4 +10,4 @@ export default {
   name: 'demo',
   version: '1.0.0',
   appPath: 'app',
-} as NativeScriptConfig
+} as NativeScriptConfig;
