@@ -1,5 +1,5 @@
-import { Observable } from "tns-core-modules/data/observable";
-import { SecureStorage } from "nativescript-secure-storage";
+import { Observable } from "@nativescript/core";
+import { SecureStorage } from "@nativescript/secure-storage";
 
 export class HelloWorldModel extends Observable {
   private secureStorage: SecureStorage;
@@ -21,6 +21,7 @@ export class HelloWorldModel extends Observable {
   }
 
   public doGetSync() {
+    console.log("go");
     const value = this.secureStorage.getSync({
       key: "foo"
     });

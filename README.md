@@ -13,6 +13,14 @@
 ## Installation
 From the command prompt go to your app's root folder and execute:
 
+#### NativeScript 7 and later
+
+```
+tns plugin add @nativescript/secure-storage
+```
+
+#### Before NativeScript 7
+
 ```
 tns plugin add nativescript-secure-storage
 ```

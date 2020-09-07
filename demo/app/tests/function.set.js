@@ -1,4 +1,3 @@
-/// <reference path="typings/jasmine.d.ts" />
 var secureStorage = new (require("nativescript-secure-storage").SecureStorage)();
 
 describe("set", function() {
