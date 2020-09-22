@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-  import { SecureStorage } from "nativescript-secure-storage";
+  import { SecureStorage } from "@nativescript/secure-storage";
 
   const secureStorage = new SecureStorage();
 
