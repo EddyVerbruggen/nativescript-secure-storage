@@ -1,12 +1,10 @@
 # NativeScript Secure Storage plugin
 
 [![NPM version][npm-image]][npm-url]
-[![Downloads][downloads-image]][npm-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
-[npm-image]:http://img.shields.io/npm/v/nativescript-secure-storage.svg
-[npm-url]:https://npmjs.org/package/nativescript-secure-storage
-[downloads-image]:http://img.shields.io/npm/dm/nativescript-secure-storage.svg
+[npm-image]:http://img.shields.io/npm/v/@nativescript/secure-storage.svg
+[npm-url]:https://npmjs.org/package/@nativescript/secure-storage
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
 
