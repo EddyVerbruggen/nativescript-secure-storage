@@ -46,7 +46,7 @@ export class SecureStorage extends SecureStorageCommon {
       let query = SAMKeychainQuery.new();
       query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
-      if(arg.accessGroup){
+      if (arg.accessGroup) {
         query.accessGroup = arg.accessGroup;
       }
       try {
@@ -66,7 +66,7 @@ export class SecureStorage extends SecureStorageCommon {
     let query = SAMKeychainQuery.new();
     query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
-    if(arg.accessGroup){
+    if (arg.accessGroup) {
       query.accessGroup = arg.accessGroup;
     }
     try {
@@ -90,7 +90,7 @@ export class SecureStorage extends SecureStorageCommon {
       query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
       query.password = arg.value;
-      if(arg.accessGroup){
+      if (arg.accessGroup) {
         query.accessGroup = arg.accessGroup;
       }
       resolve(query.save());
@@ -108,7 +108,7 @@ export class SecureStorage extends SecureStorageCommon {
     query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
     query.password = arg.value;
-    if(arg.accessGroup){
+    if (arg.accessGroup) {
       query.accessGroup = arg.accessGroup;
     }
     return query.save();
@@ -125,7 +125,7 @@ export class SecureStorage extends SecureStorageCommon {
       let query = SAMKeychainQuery.new();
       query.service = arg.service || SecureStorage.defaultService;
       query.account = arg.key;
-      if(arg.accessGroup){
+      if (arg.accessGroup) {
         query.accessGroup = arg.accessGroup;
       }
       try {
@@ -145,7 +145,7 @@ export class SecureStorage extends SecureStorageCommon {
     let query = SAMKeychainQuery.new();
     query.service = arg.service || SecureStorage.defaultService;
     query.account = arg.key;
-    if(arg.accessGroup){
+    if (arg.accessGroup) {
       query.accessGroup = arg.accessGroup;
     }
     try {
