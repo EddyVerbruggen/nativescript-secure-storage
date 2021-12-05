@@ -266,3 +266,39 @@ If you're running into issues similar to [issue_10](https://github.com/EddyVerbr
 * On __iOS__ we're leveraging the KeyChain using the [SAMKeychain](https://github.com/soffes/SAMKeychain) library (on the Simulator `NSUserDefaults`),
 * On __Android__ we're using [Hawk](https://github.com/orhanobut/hawk) library which internally uses [Facebook conceal](https://github.com/facebook/conceal).
 * Thanks, [Prabu Devarrajan](https://github.com/prabudevarrajan) for [adding the `deleteAll` function](https://github.com/EddyVerbruggen/nativescript-secure-storage/pull/11)!
+
+## iOS Keychain Access Groups
+
+You can share secrets between apps/extensions via Keychain access groups.
+
+To setup:
+
+* Add a keychain access group entitlement to your app
+  by adding an entry in the ```app/App_Resources/iOS/<someName>.entitlements``` file.
+
+  e.g.
+  ```xml
+  <key>keychain-access-groups</key>
+  <array>
+    <string>$(AppIdentifierPrefix)com.my.app.sharedgroup</string>
+  </array>
+  ```
+* Then in your app specify the ```accessGroup``` property when getting/setting values.
+  e.g. 
+  
+  ```typescript
+  import { SecureStorage } from "nativescript-secure-storage";
+
+  export class MyComponent {
+    secureStorage = new SecureStorage();
+
+    // a method that can be called from your view
+    setSecureValue() {
+      this.secureStorage.set({
+        accessGroup:"<TeamID>.com.my.app.sharedgroup",
+        key: 'myKey',
+        value: 'my value'
+      }).then(success => { console.log(success)});
+    }
+  }
+  ```
